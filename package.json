@@ -1,23 +1,11 @@
 {
-  "name": "gameboy-finder",
+  "name": "pricelogger",
   "version": "1.0.0",
-  "description": "finds broken gameboys on ebay and notifies user",
-  "main": "app.js",
+  "description": "��#\u0000 \u0000g\u0000a\u0000m\u0000e\u0000b\u0000o\u0000y\u0000_\u0000f\u0000i\u0000n\u0000d\u0000e\u0000r\u0000\r\u0000 \u0000",
+  "main": "pricelogger.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sbboard/gameboy_finder.git"
-  },
-  "author": "Buffum",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/sbboard/gameboy_finder/issues"
-  },
-  "homepage": "https://github.com/sbboard/gameboy_finder#readme",
-  "dependencies": {
-    "ebay-node-api": "^2.5.5",
-    "nodemailer": "^6.1.1"
-  }
+  "author": "",
+  "license": "ISC"
 }
