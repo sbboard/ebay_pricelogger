@@ -1,8 +1,8 @@
 const axios = require('axios')
 const mongoose = require('mongoose')
 const path = require('path')
-const gameboyModel = require('./model/gameboy.model')
 const config = require(path.join(__dirname, 'config.js'));
+const gameboyModel = require('./model/gameboy.model')
 const admin = {
   interval: 24*60*60*1000
 }

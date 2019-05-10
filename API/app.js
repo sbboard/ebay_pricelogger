@@ -1,7 +1,8 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
-const dbpass = require('./secret.js')
+const path = require('path')
+const config = require(path.join(__dirname, 'config.js'));
 
 const dev_db_url = `mongodb+srv://buffum:${config.mondo_secret}@cluster0-thkhg.mongodb.net/test`
 const mongoDB = process.env.MONGODB_URI || dev_db_url
@@ -17,7 +18,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 
 const product = require('./routes/product.route')
 
-app.use('/api', product)
+app.use('/', product)
 
 const port = (process.env.PORT || 8128)
 
