@@ -1,8 +1,10 @@
 const axios = require('axios')
+const mongoose = require('mongoose')
 const path = require('path')
+const gameboyModel = require('./model/gameboy.model')
 const config = require(path.join(__dirname, 'config.js'));
 const admin = {
-  interval = 24*60*1000
+  interval: 24*60*1000
 }
 
 setInterval(()=> {
@@ -60,6 +62,31 @@ setInterval(()=> {
     }
     if(typeof response.data.findCompletedItemsResponse[0].errorMessage != 'undefined'){
       console.log(response.data.findCompletedItemsResponse[0].errorMessage[0].error[0].message)
+    }
+  })
+  .then(function(){
+    //connect to mongoDB
+    const dev_db_url = `mongodb+srv://buffum:${config.mondo_secret}@cluster0-thkhg.mongodb.net/test`
+    const mongoDB = process.env.MONGODB_URI || dev_db_url
+    mongoose.connect(mongoDB, {useNewUrlParser: true})
+    mongoose.Promise = global.Promise
+    const db = mongoose.connection
+    db.on('error', console.error.bind(console, 'MongoDB connection error:'))
+
+    for(let x = 0;x<gameboysOfToday.length;x++){
+      let thisOldBoy = new gameboyModel({
+        title: gameboysOfToday[x].title,
+        price: gameboysOfToday[x].actualPrice,
+        url: gameboysOfToday[x].url,
+        date: gameboysOfToday[x].dateSale,
+      })
+
+      thisOldBoy.save((err) => {
+          if (err){
+              return next(err)
+          }
+          console.log('Gameboy posted')
+      })
     }
   })
   .catch(function (error) {
