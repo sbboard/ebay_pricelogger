@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const dbpass = require('./secret.js')
 
-const dev_db_url = `mongodb+srv://buffum:${dbpass}@cluster0-unqbg.mongodb.net/product`
+const dev_db_url = `mongodb+srv://buffum:${config.mondo_secret}@cluster0-thkhg.mongodb.net/test`
 const mongoDB = process.env.MONGODB_URI || dev_db_url
 mongoose.connect(mongoDB, {useNewUrlParser: true})
 mongoose.Promise = global.Promise
