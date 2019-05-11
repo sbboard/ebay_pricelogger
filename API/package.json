@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "express": "^4.16.4",
+    "mongodb": "^3.2.4",
     "mongoose": "^5.4.10",
     "nodemon": "^1.18.9"
   },
