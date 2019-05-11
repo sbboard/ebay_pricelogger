@@ -1,34 +1,47 @@
 var ctx = document.getElementById('myChart').getContext('2d')
-let gameBoyData= []
 axios.get('https://gameboy-price-logger.herokuapp.com/')
-  .then(function(response){
-    gameBoyData = response.data
-    console.log(gameBoyData)
+.then(function(response){
+    sortData(response.data)
 })
-.then(function(){
+
+function sortData(data){
+    console.log(data.length)
+    let currentDate = 0
+    let currentCount = 0
+    let currentTotal = 0
+    let days= []
+    let avs= []
+    for(let i=0;i<data.length;i++){
+        if(currentDate != data[i].date.split("T")[0]){
+            if(currentCount != 0){
+                avs.push(currentTotal / currentCount)
+            }
+            days.push(data[i].date.split("T")[0])
+            currentDate = data[i].date.split("T")[0]
+            currentTotal = 0
+            currentCount = 0
+        }
+        else{
+            currentTotal += parseFloat(data[i].price)
+            currentCount++
+            console.log(currentTotal)
+            console.log(currentCount)
+        }
+    }
+    if(currentCount != 0){
+        avs.push(currentTotal / currentCount)
+    }
+    createChart(days, avs)
+}
+
+function createChart(days,avs){
     var myChart = new Chart(ctx, {
-        type: 'bar',
+        type: 'line',
         data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            labels: days,
             datasets: [{
-                label: '# of Votes',
-                data: [3, 9, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
+                label: 'Av Price',
+                data: avs,
                 borderWidth: 1
             }]
         },
@@ -42,4 +55,4 @@ axios.get('https://gameboy-price-logger.herokuapp.com/')
             }
         }
     })
-})
+}
