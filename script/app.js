@@ -39,14 +39,7 @@ setInterval(()=> {
         thisBoy.title = gameboy[i].title[0]
         //Price
         let price = parseFloat(gameboy[i].sellingStatus[0].convertedCurrentPrice[0].__value__).toFixed(2)
-        let shippingCost = 0
-        if(typeof gameboy[i].shippingInfo[0].shippingServiceCost != 'undefined'){
-            shippingCost = parseFloat(gameboy[i].shippingInfo[0].shippingServiceCost[0].__value__).toFixed(2)
-        }
-        else{
-            shippingCost = "*"
-        }
-        thisBoy.actualPrice = price + shippingCost
+        thisBoy.actualPrice = price
         //URL
         thisBoy.url = gameboy[i].viewItemURL[0]
         //Date
