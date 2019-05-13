@@ -5,7 +5,12 @@ axios.get('https://gameboy-price-logger.herokuapp.com/')
 })
 
 function sortData(data){
-    console.log(data.length)
+    data.sort(function (a, b) {
+        if (a.date > b.date) return 1;
+        if (a.date < b.date) return -1;
+        return 0;
+      });
+    console.log(data)
     let currentDate = 0
     let currentCount = 0
     let currentTotal = 0
@@ -24,13 +29,12 @@ function sortData(data){
         else{
             currentTotal += parseFloat(data[i].price)
             currentCount++
-            console.log(currentTotal)
-            console.log(currentCount)
         }
     }
     if(currentCount != 0){
         avs.push(currentTotal / currentCount)
     }
+    console.log(days, avs)
     createChart(days, avs)
 }
 
