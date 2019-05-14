@@ -18,7 +18,7 @@ function sortData(data){
     for(let i=0;i<data.length;i++){
         if(currentDate != data[i].date.split("T")[0]){
             if(currentCount != 0){
-                avs.push(currentTotal / currentCount)
+                avs.push((currentTotal / currentCount).toFixed(2))
             }
             days.push(data[i].date.split("T")[0])
             currentDate = data[i].date.split("T")[0]
@@ -31,7 +31,7 @@ function sortData(data){
         }
     }
     if(currentCount != 0){
-        avs.push(currentTotal / currentCount)
+        avs.push((currentTotal / currentCount).toFixed(2))
     }
     createChart(days, avs)
 }
