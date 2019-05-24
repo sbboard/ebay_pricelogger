@@ -4,13 +4,13 @@ const path = require('path')
 const config = require(path.join(__dirname, 'config.js'));
 const gameboyModel = require('./model/gameboy.model')
 const admin = {
-  interval: 12*60*60*1000
+  interval: 24*60*60*1000
 }
 
 setInterval(()=> {
   let date = new Date();
   const today = date.toISOString()
-  let yesterdayMilli = date.setDate(date.getDate() - .5);
+  let yesterdayMilli = date.setDate(date.getDate() - 1);
   const yesterday = new Date(yesterdayMilli).toISOString()
   let gameboysOfToday = []
   const apiURL = "http://svcs.ebay.com/services/search/FindingService/v1?"+
