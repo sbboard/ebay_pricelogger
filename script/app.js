@@ -17,7 +17,6 @@ setInterval(()=> {
   "OPERATION-NAME=findCompletedItems"+
   "&SECURITY-APPNAME="+config.client_id+
   "&RESPONSE-DATA-FORMAT=JSON"+
-  //`&keywords=%27gameboy color%27 %27for parts%27`+
   `&keywords=gameboy color for parts`+
   "&categoryId=139971"+
   "&itemFilter(0).name=Condition"+
@@ -44,7 +43,15 @@ setInterval(()=> {
         thisBoy.url = gameboy[i].viewItemURL[0]
         //Date
         thisBoy.dateSale = gameboy[i].listingInfo[0].endTime[0]
-        if(thisBoy.title.toLowerCase().includes("pocket") || thisBoy.title.toLowerCase().includes("lot") || thisBoy.title.toLowerCase().includes("box") || thisBoy.title.toLowerCase().includes("modded") || thisBoy.title.toLowerCase().includes("custom")){
+        if(thisBoy.title.toLowerCase().includes("pocket") || 
+          thisBoy.title.toLowerCase().includes("lot") || 
+          thisBoy.title.toLowerCase().includes("box") || 
+          thisBoy.title.toLowerCase().includes("advance") || 
+          thisBoy.title.toLowerCase().includes("games") || 
+          thisBoy.title.toLowerCase().includes("light") || 
+          thisBoy.title.toLowerCase().includes("ds") || 
+          thisBoy.title.toLowerCase().includes("modded") || 
+          thisBoy.title.toLowerCase().includes("custom")){
           console.log("skip")
         }
         else{
