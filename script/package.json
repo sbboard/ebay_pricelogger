@@ -18,6 +18,6 @@
   "homepage": "https://github.com/sbboard/ebay_pricelogger#readme",
   "dependencies": {
     "axios": "^0.18.0",
-    "mongoose": "^5.5.7"
+    "mongoose": "^5.7.5"
   }
 }
